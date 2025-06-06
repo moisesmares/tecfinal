@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Eliminar Libro</title>
+</head>
+<body>
+<h1>¿Estás seguro de que deseas eliminar este libro?</h1>
+
+<div>
+    <p><strong>Título:</strong> <span th:text="${libro.nombre}"></span></p>
+    <p><strong>Autor:</strong> <span th:text="${libro.autor}"></span></p>
+    <p><strong>Año:</strong> <span th:text="${libro.anio}"></span></p>
+    <p><strong>Género:</strong> <span th:text="${libro.genero}"></span></p>
+    <img th:src="${libro.imagen}" width="150" alt="Imagen del libro">
+</div>
+
+<form th:action="@{/Libreria/eliminar/{id}(id=${libro.id})}" method="post">
+    <button type="submit">Sí, eliminar</button>
+    <a th:href="@{/Libreria/listaLibros}">Cancelar</a>
+</form>
+</body>
+</html>
