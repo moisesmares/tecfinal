@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Libro</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6b8cae;
+            --accent-color: #ff7e5f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .text-success {
+            color: var(--success-color);
+            background-color: rgba(40, 167, 69, 0.1);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--secondary-color), rgba(0, 0, 0, 0));
+            margin: 20px 0;
+        }
+
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: block;
+            margin: 30px auto 0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Agregar Nuevo Libro</h1>
+
+<p class="text-success" th:if="${param.exito}">¡Libro dado de alta exitosamente!</p>
+<hr>
+
+<form th:action="@{/Libreria/guardar}" th:object="${libro}" th:method="post">
+    <div class="form-group">
+        <label for="titulo">Título:</label>
+        <input type="text" name="titulo" id="titulo" th:field="*{titulo}" placeholder="Ingrese el título del libro" required>
+    </div>
+
+    <div class="form-group">
+        <label for="autor">Autor:</label>
+        <input type="text" name="autor" id="autor" th:field="*{autor}" placeholder="Ingrese el nombre del autor" required>
+    </div>
+
+    <div class="form-group">
+        <label for="genero">Género:</label>
+        <input type="text" name="genero" id="genero" th:field="*{genero}" placeholder="Ej: Novela, Ciencia Ficción, etc." required>
+    </div>
+
+    <div class="form-group">
+        <label for="anioPublicacion">Año de Publicación:</label>
+        <input type="number" name="anioPublicacion" id="anioPublicacion" th:field="*{anioPublicacion}" placeholder="Ej: 1998" min="0" max="2025" required>
+    </div>
+
+    <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" name="descripcion" id="descripcion" th:field="*{descripcion}" placeholder="Breve descripción del libro">
+    </div>
+
+    <div class="form-group">
+        <label for="imagen">Imagen (URL):</label>
+        <input type="text" name="imagen" id="imagen" th:field="*{imagen}" placeholder="https://ejemplo.com/imagen.jpg">
+    </div>
+
+    <button type="submit">Guardar libro</button>
+</form>
+
+</body>
+</html>
