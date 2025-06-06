@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Libro</title>
+</head>
+<body>
+
+<p class="text-success" th:if="${param.exito}">Libro dado de alta exitosamente</p>
+<hr>
+
+<form th:action="@{/Libreria/guardar}" th:object="${libro}" th:method="post">
+    <label>Título:</label>
+    <input type="text" name="titulo" id="titulo" th:field="*{titulo}"><br>
+
+    <label>Autor:</label>
+    <input type="text" name="autor" id="autor" th:field="*{autor}"><br>
+
+    <label>Género:</label>
+    <input type="text" name="genero" id="genero" th:field="*{genero}"><br>
+
+    <label>Año:</label>
+    <input type="number" name="anioPublicacion" id="anioPublicacion" th:field="*{anioPublicacion}"><br>
+
+    <label>Descripción:</label>
+    <input type="text" name="descripcion" id="descripcion" th:field="*{descripcion}"><br>
+
+    <label>Imagen (URL):</label>
+    <input type="text" name="imagen" id="imagen" th:field="*{imagen}"><br><br>
+
+    <button type="submit">Guardar libro</button>
+</form>
+
+</body>
+</html>
